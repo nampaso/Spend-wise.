@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SpendWise — Personal Finance Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for modern typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- App Container (CSS Grid Layout) -->
+  <div class="app-layout">
+
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="brand">
+        <span class="brand-icon">💳</span>
+        <h1 class="brand-title">SpendWise</h1>
+      </div>
+      <nav class="nav-menu">
+        <a href="#" class="nav-item active">
+          <span class="nav-icon">📊</span>
+          <span class="nav-text">Dashboard</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">💸</span>
+          <span class="nav-text">Transactions</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">🎯</span>
+          <span class="nav-text">Budgets</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">📈</span>
+          <span class="nav-text">Analytics</span>
+        </a>
+        <a href="#" class="nav-item">
+          <span class="nav-icon">⚙️</span>
+          <span class="nav-text">Settings</span>
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Header -->
+    <header class="header">
+      <div class="header-search">
+        <span class="search-icon">🔍</span>
+        <input type="search" placeholder="Search transactions, categories..." aria-label="Search">
+      </div>
+      <div class="header-user">
+        <button class="notification-btn" aria-label="Notifications">
+          🔔 <span class="badge"></span>
+        </button>
+        <div class="user-profile">
+          <div class="avatar">JD</div>
+          <div class="user-info">
+            <span class="user-name">Jane Doe</span>
+            <span class="user-role">Pro Account</span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <div class="content-header">
+        <div>
+          <h2>Financial Overview</h2>
+          <p class="subtitle">July 2026 Monthly Summary</p>
+        </div>
+        <button class="primary-btn">+ Add Transaction</button>
+      </div>
+
+      <!-- Category Cards Grid -->
+      <section class="cards-grid">
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon food">🍔</span>
+            <span class="card-tag">30% of budget</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Food & Dining</h3>
+            <p class="card-amount">$642.50</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 75%;"></div>
+            </div>
+            <span class="card-meta">Limit: $850.00</span>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon transport">🚗</span>
+            <span class="card-tag">12% of budget</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Transport</h3>
+            <p class="card-amount">$215.10</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 53%;"></div>
+            </div>
+            <span class="card-meta">Limit: $400.00</span>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon rent">🏠</span>
+            <span class="card-tag">Fixed Cost</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Rent & Housing</h3>
+            <p class="card-amount">$1,850.00</p>
+            <div class="progress-bar">
+              <div class="progress-fill danger" style="width: 100%;"></div>
+            </div>
+            <span class="card-meta">Limit: $1,850.00</span>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon entertainment">🎬</span>
+            <span class="card-tag">8% of budget</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Entertainment</h3>
+            <p class="card-amount">$145.00</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 48%;"></div>
+            </div>
+            <span class="card-meta">Limit: $300.00</span>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon savings">💰</span>
+            <span class="card-tag success">+15% vs last mo</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Savings Goal</h3>
+            <p class="card-amount">$1,200.00</p>
+            <div class="progress-bar">
+              <div class="progress-fill success-fill" style="width: 80%;"></div>
+            </div>
+            <span class="card-meta">Target: $1,500.00</span>
+          </div>
+        </article>
+
+        <article class="card" tabindex="0">
+          <div class="card-header">
+            <span class="card-icon utilities">⚡</span>
+            <span class="card-tag">On Track</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Utilities & Bills</h3>
+            <p class="card-amount">$188.40</p>
+            <div class="progress-bar">
+              <div class="progress-fill" style="width: 62%;"></div>
+            </div>
+            <span class="card-meta">Limit: $300.00</span>
+          </div>
+        </article>
+
+      </section>
+    </main>
+
+  </div>
+
+</body>
+</html>
