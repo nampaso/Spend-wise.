@@ -1,0 +1,440 @@
+/* ==========================================================================
+   1. CSS CUSTOM PROPERTIES (THEME VARIABLES) & RESET
+   ========================================================================== */
+:root {
+  /* Brand Palette */
+  --color-brand: #4f46e5;         /* Indigo 600 */
+  --color-brand-hover: #4338ca;   /* Indigo 700 */
+  --color-accent: #10b981;        /* Emerald 500 */
+  --color-accent-light: #d1fae5;  /* Emerald 100 */
+  --color-danger: #ef4444;        /* Red 500 */
+
+  /* Surface & Backgrounds */
+  --color-bg-app: #f8fafc;        /* Slate 50 */
+  --color-surface: #ffffff;
+  --color-surface-hover: #f1f5f9; /* Slate 100 */
+  --color-border: #e2e8f0;       /* Slate 200 */
+
+  /* Typography Colors */
+  --color-text-primary: #0f172a;  /* Slate 900 */
+  --color-text-secondary: #64748b;/* Slate 500 */
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --shadow-hover: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+
+  /* Layout dimensions */
+  --sidebar-width: 260px;
+  --header-height: 70px;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --transition-speed: 200ms; /* Must be < 250ms */
+}
+
+/* STRETCH GOAL: Dark Theme Overrides */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg-app: #0f172a;       /* Slate 900 */
+    --color-surface: #1e293b;      /* Slate 800 */
+    --color-surface-hover: #334155;/* Slate 700 */
+    --color-border: #334155;       /* Slate 700 */
+
+    --color-text-primary: #f8fafc; /* Slate 50 */
+    --color-text-secondary: #94a3b8;/* Slate 400 */
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4);
+    --shadow-hover: 0 10px 20px -3px rgb(0 0 0 / 0.5);
+  }
+}
+
+/* Global Box Sizing & Font Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background-color: var(--color-bg-app);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+}
+
+/* ==========================================================================
+   2. MAIN MACRO LAYOUT (CSS GRID)
+   ========================================================================== */
+.app-layout {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) 1fr;
+  grid-template-rows: var(--header-height) 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  min-height: 100vh;
+}
+
+/* Assign Grid Areas */
+.sidebar { grid-area: sidebar; }
+.header { grid-area: header; }
+.main-content { grid-area: main; }
+
+/* ==========================================================================
+   3. SIDEBAR STYLING (FLEXBOX)
+   ========================================================================== */
+.sidebar {
+  background-color: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-icon {
+  font-size: 1.5rem;
+}
+
+.brand-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-brand);
+}
+
+.nav-menu {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+.nav-item:hover,
+.nav-item:focus-visible {
+  background-color: var(--color-surface-hover);
+  color: var(--color-text-primary);
+  outline: none;
+}
+
+.nav-item.active {
+  background-color: var(--color-brand);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   4. HEADER STYLING (FLEXBOX)
+   ========================================================================== */
+.header {
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2rem;
+}
+
+.header-search {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-bg-app);
+  border: 1px solid var(--color-border);
+  padding: 0.5rem 1rem;
+  border-radius: var(--radius-md);
+  width: 320px;
+}
+
+.header-search input {
+  border: none;
+  background: transparent;
+  width: 100%;
+  color: var(--color-text-primary);
+  outline: none;
+  font-family: inherit;
+}
+
+.header-user {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.notification-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+  position: relative;
+}
+
+.notification-btn .badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  width: 8px;
+  height: 8px;
+  background-color: var(--color-danger);
+  border-radius: 50%;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--color-brand);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   5. MAIN CONTENT & CATEGORY CARDS GRID
+   ========================================================================== */
+.main-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  overflow-y: auto;
+}
+
+.content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.subtitle {
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.primary-btn {
+  background-color: var(--color-brand);
+  color: white;
+  border: none;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius-md);
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color var(--transition-speed) ease;
+}
+
+.primary-btn:hover {
+  background-color: var(--color-brand-hover);
+}
+
+/* Grid for the 6 Category Cards */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Individual Card Styling & Micro-interactions */
+.card {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  cursor: pointer;
+  /* Micro-interaction setup (< 250ms Requirement) */
+  transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
+}
+
+/* Hover and Keyboard Focus Animations */
+.card:hover,
+.card:focus-visible {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--color-brand);
+  outline: none;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.card-icon {
+  font-size: 1.25rem;
+  padding: 0.5rem;
+  background-color: var(--color-bg-app);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-app);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.card-tag.success {
+  color: var(--color-accent);
+  background-color: var(--color-accent-light);
+}
+
+.card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.card-title {
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.card-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 6px;
+  background-color: var(--color-bg-app);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-top: 0.25rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background-color: var(--color-brand);
+  border-radius: 3px;
+}
+
+.progress-fill.danger {
+  background-color: var(--color-danger);
+}
+
+.progress-fill.success-fill {
+  background-color: var(--color-accent);
+}
+
+.card-meta {
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
+}
+
+/* ==========================================================================
+   6. RESPONSIVE DESIGN (MEDIA QUERY < 768px)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Collapse Grid into Single Column Layout */
+  .app-layout {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto 1fr;
+    grid-template-areas:
+      "header"
+      "sidebar"
+      "main";
+  }
+
+  .header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .header-search {
+    width: 100%;
+  }
+
+  .header-user {
+    justify-content: space-between;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--color-border);
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  /* Transform sidebar menu into horizontal scroll or stack on mobile */
+  .nav-menu {
+    flex-direction: row;
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .nav-item {
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding: 1rem;
+  }
+
+  .content-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .primary-btn {
+    width: 100%;
+  }
+
+  /* Single column for cards on mobile */
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
